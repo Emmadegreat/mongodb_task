@@ -1,6 +1,9 @@
-const connect = require("./config/database")
-const express  = require("express");
-import bodyParser from "body-parser";
+const express = require("express");
+const { json } = require('express');
+const userRoute = require('./router/userRoutes')
+const connect = require('./config/database')
+const bodyParser = require("body-parser");
+
 connect()
 
 const app = express();
