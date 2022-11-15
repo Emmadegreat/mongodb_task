@@ -1,34 +1,17 @@
 const mongoose = require('mongoose')
 const dataSchema = new mongoose.Schema({
-    username: {
+    title: {
         type: String,
-        required: true,
-        maxlength: 10,
-        minlength: 2,
+        //required: true
+    },
+    description: {
+        type: String,
+        //required: true,
     },
     email: {
-        type: String,
-        required: true,
-        unique: true,
-        maxlength: 20,
-        minlength: 5,
-    },
-    age: {
-        type: Number,
-        required: true,
-        default: null,
-    },
-    isUser: {
-        type: Boolean,
-        default: true,
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+        type: String
     }
-},
-{ timestamp: true }
-);
 
-//const UserModel = model('users', userSchema);
+},{ timestamp: true } );
+
 module.exports = mongoose.model('Data', dataSchema);

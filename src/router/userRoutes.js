@@ -1,13 +1,14 @@
-const router = require('express').Router();
+const express = require("express")
+const router = express.Router();
 const Model = require('../model/userModel')
 //const controller = require("../controller/userController")
 
-//get all users
+//get all tasks
 router.get('/getAll', async(req, res) => {
     try {
         const data = await Model.find()
         res.status(200).json({
-            message: `users found`,
+            message: `All Todo Tasks`,
             success: true,
             data
         })
@@ -19,13 +20,13 @@ router.get('/getAll', async(req, res) => {
     }
 });
 
-//get single user
+//get single task
 router.get('/getOne/:id', async(req, res) => {
     try {
         //const id = req.params.id;
         const singleuser = await Model.findById(req.params.id)
         res.status(200).json({
-            message: `user has been found`,
+            message: `Task has been found`,
             success: true,
             singleuser
         })
@@ -37,17 +38,19 @@ router.get('/getOne/:id', async(req, res) => {
     }
 })
 
+//add task to the database
 router.post('/post', async(req, res) => {
 
     try {
         const data = new Model({
-            username: req.body.username,
+            title: req.body.title,
+            description: req.body.description,
             email: req.body.email,
-            age: req.body.age
+            time:new Date().toLocaleTimeString()
         })
         const dataToSave = await data.save();
         res.status(200).json({
-            message: `user added`,
+            message: `Task added`,
             success: true,
             dataToSave
         })
@@ -66,7 +69,7 @@ router.patch('/patch/:id', async(req, res) => {
         const options = { new: true }
         const result = await Model.findByIdAndUpdate(id, update, options)
         res.status(200).json({
-            message: `user updated`,
+            message: `Task updated successfully`,
             success: true,
             result
         })
@@ -90,9 +93,5 @@ router.delete('/delete/:id', async (req, res) => {
         })
     }
 })
-//router
-    //.get('/', controller.getAllUsers)
-    //.post('/', controller.createUser);
-
 
 module.exports = router;
