@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 const { config } = require('dotenv')
 config()
 
@@ -10,4 +10,4 @@ async function connect(uri) {
         console.log(error.message);
     }
 }
-module.exports = connect
+module.exports = connect;*/
